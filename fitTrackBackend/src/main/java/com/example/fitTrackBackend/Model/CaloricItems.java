@@ -1,8 +1,11 @@
 package com.example.fitTrackBackend.Model;
 import jakarta.persistence.*;
+import lombok.Getter;
 import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
 public class CaloricItems {
 
     @Setter
@@ -14,19 +17,4 @@ public class CaloricItems {
     private int calorieCount;
     private int caloriesPerDay;
 
-    private Long getId(){
-        return Id;
-    }
-
-    private String getItemName(){
-        return itemName;
-    }
-
-    private int getCalorieCount(){
-        return calorieCount;
-    }
-
-    private int getCaloriesPerDay(){
-        return caloriesPerDay;
-    }
 }
