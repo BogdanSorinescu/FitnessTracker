@@ -40,7 +40,7 @@ public class Controller {
         return repository.save(item);
     }
 
-    @DeleteMapping("/{id]")
+    @DeleteMapping("/{id}")
     public void deleteItems(@PathVariable Long id){
         repository.deleteById(id);
     }
