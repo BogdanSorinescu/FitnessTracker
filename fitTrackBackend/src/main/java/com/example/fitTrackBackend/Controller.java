@@ -50,7 +50,7 @@ public class Controller {
         return service.patchItem(id, updates);
     }
 
-    @GetMapping("/cals/search")
+    @GetMapping("/search")
     public ResponseEntity<List<CaloricItems>> searchItems(@RequestParam String keyword){
         System.out.println("Searching for items with " + keyword);
         List<CaloricItems>searchItems = caloricService.searchItems(keyword);
