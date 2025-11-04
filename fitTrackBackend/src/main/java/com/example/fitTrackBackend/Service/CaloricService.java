@@ -9,9 +9,11 @@ import java.util.List;
 public class CaloricService {
 
     private final CaloricRepository repository;
+    private final CaloricRepository caloricRepository;
 
-    public CaloricService(CaloricRepository repository){
+    public CaloricService(CaloricRepository repository, CaloricRepository caloricRepository){
         this.repository= repository;
+        this.caloricRepository = caloricRepository;
     }
 
     public List<CaloricItems> getAllItems() {
@@ -54,5 +56,9 @@ public class CaloricService {
 
     public void deleteItem(Long id){
         repository.deleteById(id);
+    }
+
+    public List<CaloricItems> searchItems(String keyword) {
+        return caloricRepository.searchItems(keyword);
     }
 }
