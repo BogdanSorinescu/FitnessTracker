@@ -1,8 +1,8 @@
 package com.example.fitTrackBackend;
 
 import com.example.fitTrackBackend.Model.CaloricItems;
-import com.example.fitTrackBackend.Repo.Repository;
 import org.springframework.web.bind.annotation.*;
+import com.example.fitTrackBackend.Service.CaloricService;
 
 import java.util.List;
 
@@ -11,58 +11,39 @@ import java.util.List;
 @CrossOrigin(origins = "*") //allows front-end connectivity
 public class Controller {
 
-    private final Repository repository;
+    private final CaloricService service;
 
-    public Controller(Repository repository) {
-        this.repository = repository;
+    public Controller(CaloricService service) {
+
+        this.service = service;
     }
 
     //get mapping that will show us all the calories entered
     @GetMapping
-    public List<CaloricItems>getAll(){
-        return repository.findAll();
+    public List<CaloricItems> getAll() {
+        return service.getAllItems();
     }
 
     @PostMapping
     public CaloricItems addNutrition(@RequestBody CaloricItems item){
-        return repository.save(item);
+        return service.addItem(item);
     }
 
     @PutMapping("/{id}")
-    public CaloricItems updateItems(@PathVariable Long id, @RequestBody CaloricItems updateItem){
-        CaloricItems item = repository.findById(id).orElseThrow(
-                ()-> new RuntimeException("Could not find item with Id: " + id));
-
-        item.setItemName(updateItem.getItemName());
-        item.setCalorieCount(updateItem.getCalorieCount());
-        item.setCaloriesPerDay(updateItem.getCaloriesPerDay());
-
-        return repository.save(item);
+    public CaloricItems updateItems(@PathVariable Long id, @RequestBody CaloricItems updateItem) {
+        return service.updateItem(id, updateItem);
     }
 
+    // Delete item
     @DeleteMapping("/{id}")
-    public void deleteItems(@PathVariable Long id){
-        repository.deleteById(id);
+    public void deleteItems(@PathVariable Long id) {
+        service.deleteItem(id);
     }
 
-    @PatchMapping("{id}")
-    public void editItem(@PathVariable Long id, @RequestBody CaloricItems updates){
-        CaloricItems item = repository.findById(id).orElseThrow(
-                () -> new RuntimeException("Item not found with id: "+ id));
-
-        if(updates.getItemName()!=null){
-            item.setItemName(updates.getItemName());
-        }
-
-        if(updates.getCalorieCount() != null){
-            item.setCalorieCount(updates.getCalorieCount());
-        }
-
-        if(updates.getCaloriesPerDay() != null){
-            item.setCaloriesPerDay(updates.getCaloriesPerDay());
-        }
-
-        repository.save(item);
+    // Patch item (partial update)
+    @PatchMapping("/{id}")
+    public CaloricItems editItem(@PathVariable Long id, @RequestBody CaloricItems updates) {
+        return service.patchItem(id, updates);
     }
 }
 
