@@ -44,6 +44,26 @@ public class Controller {
     public void deleteItems(@PathVariable Long id){
         repository.deleteById(id);
     }
+
+    @PatchMapping("{id}")
+    public void editItem(@PathVariable Long id, @RequestBody CaloricItems updates){
+        CaloricItems item = repository.findById(id).orElseThrow(
+                () -> new RuntimeException("Item not found with id: "+ id));
+
+        if(updates.getItemName()!=null){
+            item.setItemName(updates.getItemName());
+        }
+
+        if(updates.getCalorieCount() != null){
+            item.setCalorieCount(updates.getCalorieCount());
+        }
+
+        if(updates.getCaloriesPerDay() != null){
+            item.setCaloriesPerDay(updates.getCaloriesPerDay());
+        }
+
+        repository.save(item);
+    }
 }
 
 

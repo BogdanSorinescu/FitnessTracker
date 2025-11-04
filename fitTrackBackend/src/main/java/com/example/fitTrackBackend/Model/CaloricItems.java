@@ -14,7 +14,7 @@ public class CaloricItems {
     private Long Id;
 
     private String itemName;
-    private int calorieCount;
-    private int caloriesPerDay;
+    private Integer calorieCount;
+    private Integer caloriesPerDay;
 
 }
