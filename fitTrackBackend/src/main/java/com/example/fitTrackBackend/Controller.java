@@ -13,41 +13,41 @@ import java.util.List;
 @CrossOrigin(origins = "*") //allows front-end connectivity
 public class Controller {
 
-    private final CaloricService service;
+    ;
     private final CaloricService caloricService;
 
     public Controller(CaloricService service, CaloricService caloricService) {
 
-        this.service = service;
+
         this.caloricService = caloricService;
     }
 
     //get mapping that will show us all the calories entered
     @GetMapping
     public List<CaloricItems> getAll() {
-        return service.getAllItems();
+        return caloricService.getAllItems();
     }
 
     @PostMapping
     public CaloricItems addNutrition(@RequestBody CaloricItems item){
-        return service.addItem(item);
+        return caloricService.addItem(item);
     }
 
     @PutMapping("/{id}")
     public CaloricItems updateItems(@PathVariable Long id, @RequestBody CaloricItems updateItem) {
-        return service.updateItem(id, updateItem);
+        return caloricService.updateItem(id, updateItem);
     }
 
     // Delete item
     @DeleteMapping("/{id}")
     public void deleteItems(@PathVariable Long id) {
-        service.deleteItem(id);
+        caloricService.deleteItem(id);
     }
 
     // Patch item (partial update)
     @PatchMapping("/{id}")
     public CaloricItems editItem(@PathVariable Long id, @RequestBody CaloricItems updates) {
-        return service.patchItem(id, updates);
+        return caloricService.patchItem(id, updates);
     }
 
     @GetMapping("/search")
@@ -57,7 +57,16 @@ public class Controller {
         return new ResponseEntity<>(searchItems, HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<CaloricItems> selectSearchItem(@PathVariable Long id){
+        CaloricItems item = caloricService.selectSearchItem(id);
+        if (item!=null){
+            return ResponseEntity.ok(item);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
 
+    }
 }
 
 

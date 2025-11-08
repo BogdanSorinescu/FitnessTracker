@@ -62,7 +62,8 @@ public class CaloricService {
         return caloricRepository.searchItems(keyword);
     }
 
-    public void SelectSearchItem (Long id){
+    public CaloricItems selectSearchItem (Long id){
         caloricRepository.findById(id).orElse(null);
+        return null;
     }
 }
