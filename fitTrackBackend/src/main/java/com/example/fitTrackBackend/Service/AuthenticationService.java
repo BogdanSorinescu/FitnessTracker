@@ -118,7 +118,7 @@ public class AuthenticationService {
 
                 // Header
                 + "<div style=\"text-align: center; margin-bottom: 32px;\">"
-                + "<h2 style=\"color: #1a1a1a; font-size: 28px; font-weight: 600; margin: 0 0 12px 0; letter-spacing: -0.5px;\">Welcome! 👋</h2>"
+                + "<h2 style=\"color: #1a1a1a; font-size: 28px; font-weight: 600; margin: 0 0 12px 0; letter-spacing: -0.5px;\">Welcome!</h2>"
                 + "<p style=\"color: #666; font-size: 16px; margin: 0; line-height: 1.5;\">Please enter the verification code below to continue</p>"
                 + "</div>"
 
