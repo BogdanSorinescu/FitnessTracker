@@ -1,4 +1,4 @@
-package com.example.fitTrackBackend;
+package com.example.fitTrackBackend.controller;
 
 import com.example.fitTrackBackend.Model.CaloricItems;
 import org.springframework.http.HttpStatus;
