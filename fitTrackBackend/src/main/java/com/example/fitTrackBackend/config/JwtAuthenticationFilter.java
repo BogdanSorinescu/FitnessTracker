@@ -49,6 +49,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     )throws ServletException, IOException {
 
+        String path = request.getServletPath();
+        if (path.startsWith("/swagger-ui")||path.equals("/swagger-ui.html")){
+            filterChain.doFilter(request, response);
+            return;
+        }
+
         final String authHeader = request.getHeader("Authorization");
 
         if (authHeader == null ||  !authHeader.startsWith("Bearer ")){
