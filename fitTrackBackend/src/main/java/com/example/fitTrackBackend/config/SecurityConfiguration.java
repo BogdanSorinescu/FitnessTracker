@@ -39,7 +39,8 @@ public class SecurityConfiguration {
                                 "/v3/api-docs/**",      // Needed for Swagger
                                 "/v3/api-docs",
                                 "/swagger-ui/**",
-                                "/swagger-ui.html"
+                                "/swagger-ui.html",
+                                "api/cals/search"
                         ).permitAll()
                         .anyRequest().authenticated()
                 )
