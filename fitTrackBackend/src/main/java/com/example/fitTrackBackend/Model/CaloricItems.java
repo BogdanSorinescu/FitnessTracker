@@ -16,6 +16,6 @@ public class CaloricItems {
     private String itemName;
     private Integer calorieCount;
     private Integer caloriesPerDay;
-    private Integer ProteinAmount;
+    private Integer proteinAmount;
 
 }
