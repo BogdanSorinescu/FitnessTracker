@@ -1,11 +1,10 @@
 package com.example.fitTrackBackend.Model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 @Entity
 @Setter
@@ -18,10 +17,9 @@ public class loggerModel {
     private Long Id;
 
     private String exerciseName;
-    private int kiloGrams;
 
-
-
+    @OneToMany(mappedBy = "exercise", cascade = CascadeType.ALL)
+    private List<WeightEntity> weightEntities;
 
 
 }

@@ -40,7 +40,9 @@ public class SecurityConfiguration {
                                 "/v3/api-docs",
                                 "/swagger-ui/**",
                                 "/swagger-ui.html",
-                                "api/cals/search"
+                                "/api/cals/search",
+                                "/api/loggs/**",
+                                "/api/chat"
                         ).permitAll()
                         .anyRequest().authenticated()
                 )
